@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LogInSim : MonoBehaviour
 {
-    public List<string> firstNames = new List<string>()
+    List<string> firstNames = new List<string>()
     {
         "Kobe",
         "Michael",
@@ -34,7 +34,7 @@ public class LogInSim : MonoBehaviour
         "Jaylen"
     };
 
-    public List<string> lastNames = new List<string>()
+    List<string> lastNames = new List<string>()
     {
         "A",
         "B",
@@ -80,23 +80,28 @@ public class LogInSim : MonoBehaviour
         }
     }
 
+    public void queuePrint()
+    {
+        activePlayers.Enqueue(firstNames[nameRnd]);
+        Debug.Log("Initial login queue created. There are 5 players in the queue:" + activePlayers);
+    }
+
     public void NameRandomizer()
     {
+        activePlayers.Enqueue(firstNames[nameRnd]);
+        //Debug.Log("Initial login queue created. There are 5 players in the queue:" + activePlayers);
         string randomFirstName = firstNames[Random.Range(0, firstNames.Count)];
         string randomLastName = lastNames[Random.Range(0, lastNames.Count)];
+        string randomFirstName2 = firstNames[Random.Range(0, firstNames.Count)];
+        string randomLastName2 = lastNames[Random.Range(0, lastNames.Count)];
+        string randomFirstName3 = firstNames[Random.Range(0, firstNames.Count)];
+        string randomLastName3 = lastNames[Random.Range(0, lastNames.Count)];
+        string randomFirstName4 = firstNames[Random.Range(0, firstNames.Count)];
+        string randomLastName4 = lastNames[Random.Range(0, lastNames.Count)];
         activePlayers.Enqueue(randomFirstName);
         activePlayers.Enqueue(randomLastName);
         Debug.Log(randomFirstName + randomLastName + " was added to the login queue");
-        Debug.Log("Initial login queue created. There are 5 players in the queue:" + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName);
-        Debug.Log(randomFirstName + randomLastName + " is now in the game");
-        activePlayers.Dequeue();
-
-
-    }
-
-    public void PlayerLogIn(string randomFirstName, string randomLastName)
-    {
-        Debug.Log("Initial login queue created. There are 5 players in the queue:" + randomFirstName + randomLastName  +  randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName);
+        Debug.Log("Initial login queue created. There are 5 players in the queue: " + randomFirstName + randomLastName + ", " + randomFirstName2 + randomLastName2 + ", " + randomFirstName3 + randomLastName3 + ", " + randomFirstName4 + randomLastName4);
         Debug.Log(randomFirstName + randomLastName + " is now in the game");
         activePlayers.Dequeue();
     }
