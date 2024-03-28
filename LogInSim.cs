@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LogInSim : MonoBehaviour
 {
-    List<string> firstNames = new List<string>()
+    public List<string> firstNames = new List<string>()
     {
         "Kobe",
         "Michael",
@@ -34,7 +34,7 @@ public class LogInSim : MonoBehaviour
         "Jaylen"
     };
 
-    List<string> lastNames = new List<string>()
+    public List<string> lastNames = new List<string>()
     {
         "A",
         "B",
@@ -76,14 +76,29 @@ public class LogInSim : MonoBehaviour
         while (enteringQueue == true)
         {
             yield return new WaitForSeconds(3f);
-            queuePrint();
+            NameRandomizer();
         }
     }
 
-    public void queuePrint()
+    public void NameRandomizer()
     {
-        activePlayers.Enqueue(firstNames[nameRnd]);
-        Debug.Log("Initial login queue created. There are 5 players in the queue:" + activePlayers);
+        string randomFirstName = firstNames[Random.Range(0, firstNames.Count)];
+        string randomLastName = lastNames[Random.Range(0, lastNames.Count)];
+        activePlayers.Enqueue(randomFirstName);
+        activePlayers.Enqueue(randomLastName);
+        Debug.Log(randomFirstName + randomLastName + " was added to the login queue");
+        Debug.Log("Initial login queue created. There are 5 players in the queue:" + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName);
+        Debug.Log(randomFirstName + randomLastName + " is now in the game");
+        activePlayers.Dequeue();
+
+
+    }
+
+    public void PlayerLogIn(string randomFirstName, string randomLastName)
+    {
+        Debug.Log("Initial login queue created. There are 5 players in the queue:" + randomFirstName + randomLastName  +  randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName + randomFirstName + randomLastName);
+        Debug.Log(randomFirstName + randomLastName + " is now in the game");
+        activePlayers.Dequeue();
     }
 
 }
